@@ -16,10 +16,10 @@ public class User {
     @PrimaryKey(autoGenerate = true)
     private int user_id;
 
-    @ColumnInfo(name = "email_address")
+    @ColumnInfo(name = "emailAddress")
     private String emailAddress;
 
-    @ColumnInfo(name = "first_name")
+    @ColumnInfo(name = "firstName")
     private String firstName;
 
     @ColumnInfo(name = "lastName")

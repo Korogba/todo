@@ -5,9 +5,10 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity(foreignKeys = {@ForeignKey(entity = Tag.class, parentColumns = "tag_id", childColumns = "tag_id"),
+@Entity(tableName = "task_tag",
+        foreignKeys = {
+        @ForeignKey(entity = Tag.class, parentColumns = "tag_id", childColumns = "tag_id"),
         @ForeignKey(entity = Task.class, parentColumns = "task_id", childColumns = "task_id")})
-
 public class TaskTag {
 
     @PrimaryKey
@@ -18,6 +19,11 @@ public class TaskTag {
 
     @ColumnInfo(name = "task_id")
     private int task_id;
+
+    public TaskTag(int tag_id, int task_id) {
+        this.tag_id = tag_id;
+        this.task_id = task_id;
+    }
 
     public int getId() {
         return id;
