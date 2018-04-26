@@ -2,16 +2,27 @@ package com.andela.todo.data.model;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity
+@Entity(foreignKeys = @ForeignKey(entity = User.class, parentColumns = "user_id", childColumns = "user_id"))
 public abstract class Task {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int task_id;
 
     @ColumnInfo(name = "task_title")
     private String taskTitle;
+
+    public Task(int task_id, String taskTitle,
+                String taskDescription, long startDate, long endDate, int user_id) {
+        this.task_id = task_id;
+        this.taskTitle = taskTitle;
+        this.taskDescription = taskDescription;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.user_id = user_id;
+    }
 
     @ColumnInfo(name = "task_description")
     private String taskDescription;
@@ -21,6 +32,12 @@ public abstract class Task {
 
     @ColumnInfo(name = "end_date")
     private long endDate;
+
+    private int user_id;
+
+    public int getUser_id() {
+        return user_id;
+    }
 
     public int getTask_id() {
         return task_id;

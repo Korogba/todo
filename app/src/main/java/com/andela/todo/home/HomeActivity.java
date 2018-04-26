@@ -16,7 +16,7 @@ import android.view.View;
 
 import com.andela.todo.R;
 import com.andela.todo.data.model.User;
-import com.andela.todo.data.source.LocalDatabase;
+import com.andela.todo.data.source.Local.LocalDatabase;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -110,7 +110,7 @@ public class HomeActivity extends AppCompatActivity
         return true;
     }
 
-    private class TestDatabase extends AsyncTask<Void, Void, Void>{
+    private class TestDatabase extends AsyncTask<Void, Integer, Void>{
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -119,6 +119,16 @@ public class HomeActivity extends AppCompatActivity
             userList[1] = new User("emmanuel.okonji@andela.com", "Emmanuel", "Okonji");
             instance.mUserDao().insertAll(userList);
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
         }
     }
 }
